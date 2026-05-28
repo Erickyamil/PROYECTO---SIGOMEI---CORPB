@@ -200,19 +200,19 @@ def validar_fechas_odm(fecha_programada: str, fecha_estimada_cierre: str) -> boo
 
 def validar_carga(tecnico: dict, odms_activas: list, max_carga: int = 3) -> bool:
     """
-    RN-06 — Un técnico no puede tener más de max_carga ODMs activas (cualquier
-    estado no terminal) al mismo tiempo.
+    RN-06 — Un técnico no puede tener más de max_carga ODMs en estado
+    'En_Ejecucion' al mismo tiempo.
 
-    Se cuentan todas las ODMs cuyo estado no sea 'Finalizada' ni 'Cancelada',
-    independientemente del estado específico (Programada, En_Ejecucion,
-    En_espera_material, etc.).
+    Solo se cuentan las ODMs cuyo estado es 'En_Ejecucion'. Los estados
+    'Programada' y 'En_espera_material' no incrementan la carga activa
+    (AU-001: análisis de valores límite + filtro por estado).
     """
     id_tecnico = tecnico.get("id_tecnico")
-    estados_terminales = {"Finalizada", "Cancelada"}
+    estados_que_cuentan = {"En_Ejecucion"}
     odms_activas_tecnico = [
         o for o in odms_activas
         if o.get("id_tecnico") == id_tecnico
-        and o.get("estado") not in estados_terminales
+        and o.get("estado") in estados_que_cuentan
     ]
     if len(odms_activas_tecnico) >= max_carga:
         raise CargaMaximaAlcanzadaException(

@@ -20,7 +20,7 @@ class TestServiceLayer(unittest.TestCase):
             "nombre": "Carlos Mendoza Ruiz",
             "rfc": "MERC850101ABC",
             "estatus": "Activo",
-            "certificaciones": [{"especialidad": "Mecánica", "nivel": "II"}]
+            "certificaciones": [{"especialidad": "Mecánica", "nivel": "II", "vigencia": "2027-12-31"}]
         }
         self.equipo_valido = {
             "id_equipo": "e-001",
