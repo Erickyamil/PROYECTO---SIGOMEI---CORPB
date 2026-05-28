@@ -149,7 +149,7 @@ def validar_equipo_disponible(id_equipo: str, fecha_programada: str, odms_activa
     for odm in odms_activas:
         if (
             odm.get("id_equipo") == id_equipo and
-            odm.get("fecha_programada") == fecha_programada and
+            str(odm.get("fecha_programada")) == fecha_programada and
             odm.get("estado") not in {"Cancelada", "Finalizada"}
         ):
             raise EquipoOcupadoException(

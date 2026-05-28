@@ -181,10 +181,11 @@ python main_client.py 192.168.1.10 9000
 
 ## 5. Credenciales de prueba
 
-| Correo           | Contraseña     | Rol           |
-|------------------|----------------|---------------|
-| admin@sigomei.mx | Admin@SIGOMEI1 | Administrador |
-| super@sigomei.mx | Super@SIGOMEI1 | Supervisor    |
+| Correo            | Contraseña      | Rol           |
+|-------------------|-----------------|---------------|
+| admin@sigomei.mx  | Admin@SIGOMEI1  | Administrador |
+| super@sigomei.mx  | Super@SIGOMEI1  | Supervisor    |
+| super2@sigomei.mx | Super@SIGOMEI2  | Supervisor    |
 
 ---
 

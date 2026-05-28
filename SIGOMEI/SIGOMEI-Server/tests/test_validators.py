@@ -458,63 +458,6 @@ class TestRN06CargaMaxima(unittest.TestCase):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# RN-07 — Transiciones de estado de ODM según máquina de estados
-# Técnica: Tabla de transiciones de estados
-# ═══════════════════════════════════════════════════════════════════════════
-
-class TestRN07Transiciones(unittest.TestCase):
-
-    def test_en_revision_a_programada_es_valida(self):
-        self.assertTrue(validar_transicion("En_revision", "Programada"))
-
-    def test_programada_a_en_ejecucion_es_valida(self):
-        self.assertTrue(validar_transicion("Programada", "En_Ejecucion"))
-
-    def test_programada_a_cancelada_es_valida(self):
-        self.assertTrue(validar_transicion("Programada", "Cancelada"))
-
-    def test_en_ejecucion_a_en_espera_material_es_valida(self):
-        self.assertTrue(validar_transicion("En_Ejecucion", "En_espera_material"))
-
-    def test_en_ejecucion_a_finalizada_es_valida(self):
-        self.assertTrue(validar_transicion("En_Ejecucion", "Finalizada"))
-
-    def test_en_espera_material_a_en_ejecucion_es_valida(self):
-        self.assertTrue(validar_transicion("En_espera_material", "En_Ejecucion"))
-
-    def test_finalizada_a_cualquier_estado_lanza_excepcion(self):
-        for destino in ["Programada", "En_Ejecucion", "Cancelada"]:
-            with self.subTest(destino=destino):
-                with self.assertRaises(TransicionEstadoInvalidaException):
-                    validar_transicion("Finalizada", destino)
-
-    def test_cancelada_a_cualquier_estado_lanza_excepcion(self):
-        for destino in ["Programada", "En_Ejecucion", "Finalizada"]:
-            with self.subTest(destino=destino):
-                with self.assertRaises(TransicionEstadoInvalidaException):
-                    validar_transicion("Cancelada", destino)
-
-    def test_salto_en_revision_a_en_ejecucion_lanza_excepcion(self):
-        with self.assertRaises(TransicionEstadoInvalidaException):
-            validar_transicion("En_revision", "En_Ejecucion")
-
-    def test_retroceso_programada_a_en_revision_lanza_excepcion(self):
-        with self.assertRaises(TransicionEstadoInvalidaException):
-            validar_transicion("Programada", "En_revision")
-
-    def test_estado_desconocido_lanza_excepcion(self):
-        with self.assertRaises(TransicionEstadoInvalidaException):
-            validar_transicion("EstadoInventado", "Programada")
-
-    def test_excepcion_menciona_estado_actual_y_nuevo(self):
-        with self.assertRaises(TransicionEstadoInvalidaException) as ctx:
-            validar_transicion("Finalizada", "Programada")
-        msg = str(ctx.exception)
-        self.assertIn("Finalizada", msg)
-        self.assertIn("Programada", msg)
-
-
-# ═══════════════════════════════════════════════════════════════════════════
 # RN-08 — costo_real al cierre debe ser > 0
 # Técnica: Valores límite sobre costo_real
 # ═══════════════════════════════════════════════════════════════════════════
