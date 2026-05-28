@@ -1,0 +1,4 @@
+# Cliente SIGOMEI — depende de tkinter (incluido en Python stdlib)
+# No hay dependencias externas adicionales.
+# tkinter requiere el paquete python3-tk en Linux:
+#   sudo apt install python3-tk

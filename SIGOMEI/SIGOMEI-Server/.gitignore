@@ -1,0 +1,13 @@
+# Credenciales y configuración local — NO subir al repositorio
+server.properties
+
+# Bitácoras
+*.log
+*.log.*
+
+# Entorno virtual
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

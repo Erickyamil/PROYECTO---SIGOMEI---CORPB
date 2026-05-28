@@ -1,0 +1,9 @@
+# routes/tecnico_routes.py
+RUTAS_TECNICO = [
+    "CREAR_TECNICO",
+    "ACTUALIZAR_TECNICO",
+    "CAMBIAR_ESTATUS_TECNICO",
+    "OBTENER_TECNICO",
+    "BUSCAR_TECNICOS",
+    "CARGA_TECNICO",
+]
